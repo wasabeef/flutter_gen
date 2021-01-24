@@ -86,13 +86,17 @@ class FlutterGenIntegrations {
     if (flutterGenMap != null) {
       _flutterSvg = safeCast<bool>(flutterGenMap['flutter_svg']);
       _flareFlutter = safeCast<bool>(flutterGenMap['flare_flutter']);
+      _lottie = safeCast<bool>(flutterGenMap['lottie']);
     }
   }
 
   bool _flutterSvg;
   bool _flareFlutter;
+  bool _lottie;
 
   bool get flutterSvg => _flutterSvg ?? false;
 
   bool get flareFlutter => _flareFlutter ?? false;
+
+  bool get lottie => _lottie ?? false;
 }

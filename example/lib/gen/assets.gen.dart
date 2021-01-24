@@ -8,6 +8,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flare_flutter/flare_controller.dart';
+import 'package:lottie/lottie.dart';
+import 'package:lottie/src/providers/load_image.dart';
+import 'package:lottie/src/lottie_builder.dart';
 
 class $PicturesGen {
   const $PicturesGen();
@@ -37,6 +40,12 @@ class $AssetsJsonGen {
   const $AssetsJsonGen();
 
   String get fruits => 'assets/json/fruits.json';
+}
+
+class $AssetsLottieGen {
+  const $AssetsLottieGen();
+
+  LottieGenImage get check => const LottieGenImage('assets/lottie/check.json');
 }
 
 class $AssetsMovieGen {
@@ -82,6 +91,7 @@ class Assets {
   static const $AssetsFlareGen flare = $AssetsFlareGen();
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonGen json = $AssetsJsonGen();
+  static const $AssetsLottieGen lottie = $AssetsLottieGen();
   static const $AssetsMovieGen movie = $AssetsMovieGen();
   static const $AssetsUnknownGen unknown = $AssetsUnknownGen();
   static const $PicturesGen pictures = $PicturesGen();
@@ -219,6 +229,56 @@ class FlareGenImage {
       sizeFromArtboard: sizeFromArtboard,
       artboard: artboard,
       antialias: antialias,
+    );
+  }
+
+  String get path => _assetName;
+}
+
+class LottieGenImage {
+  const LottieGenImage(this._assetName);
+
+  final String _assetName;
+
+  LottieBuilder lottie({
+    Animation<double> controller,
+    bool animate,
+    FrameRate frameRate,
+    bool repeat,
+    bool reverse,
+    LottieDelegates delegates,
+    LottieOptions options,
+    void Function(LottieComposition) onLoaded,
+    LottieImageProviderFactory imageProviderFactory,
+    Key key,
+    AssetBundle bundle,
+    LottieFrameBuilder frameBuilder,
+    double width,
+    double height,
+    BoxFit fit,
+    Alignment alignment,
+    String package,
+    bool addRepaintBoundary,
+  }) {
+    return Lottie.asset(
+      _assetName,
+      controller: controller,
+      animate: animate,
+      frameRate: frameRate,
+      repeat: repeat,
+      reverse: reverse,
+      delegates: delegates,
+      options: options,
+      onLoaded: onLoaded,
+      imageProviderFactory: imageProviderFactory,
+      key: key,
+      bundle: bundle,
+      frameBuilder: frameBuilder,
+      width: width,
+      height: height,
+      alignment: alignment,
+      package: package,
+      addRepaintBoundary: addRepaintBoundary,
     );
   }
 

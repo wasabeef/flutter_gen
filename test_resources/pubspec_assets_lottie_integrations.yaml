@@ -1,0 +1,12 @@
+name: test
+
+flutter_gen:
+  output: lib/gen/
+  lineLength: 80
+
+  integrations:
+    lottie: true
+
+flutter:
+  assets:
+    - assets/lottie/check.json

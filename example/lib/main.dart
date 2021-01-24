@@ -43,6 +43,10 @@ void main() {
                 height: 120,
                 fit: BoxFit.scaleDown,
               ),
+              Assets.lottie.check.lottie(
+                width: 120,
+                height: 120,
+              ),
               const Text(
                 'Hi there, I\'m FlutterGen',
                 style: TextStyle(

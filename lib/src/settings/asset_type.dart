@@ -50,6 +50,9 @@ class AssetType {
 
   String get baseName => p.basenameWithoutExtension(path);
 
+  bool get isInLottieDir =>
+      p.split(p.dirname(path)).any((it) => it.toLowerCase() == 'lottie');
+
   List<AssetType> get children => _children.sortedBy((e) => e.path);
 
   void addChild(AssetType type) {

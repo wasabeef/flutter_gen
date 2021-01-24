@@ -15,6 +15,7 @@ dependencies:
 
   flutter_svg: ^0.18.1
   flare_flutter: ^2.0.6
+  lottie: ^0.7.0
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,7 @@ flutter_gen:
   integrations:
     flutter_svg: true
     flare_flutter: true
+    lottie: true
 
   assets:
     # Assets.imagesChip
@@ -60,6 +62,7 @@ flutter:
     - assets/json/fruits.json
     - pictures/chip5.jpg
     - assets/flare/
+    - assets/lottie/
     - assets/movie/
     - assets/unknown/
   fonts:

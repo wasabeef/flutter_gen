@@ -13,6 +13,7 @@ import '../utils/string.dart';
 import 'generator_helper.dart';
 import 'integrations/flare_integration.dart';
 import 'integrations/integration.dart';
+import 'integrations/lottie_integration.dart';
 import 'integrations/svg_integration.dart';
 
 String generateAssets(
@@ -37,6 +38,10 @@ String generateAssets(
 
     if (flutterGen.integrations.flareFlutter) {
       integrations.add(FlareIntegration());
+    }
+
+    if (flutterGen.integrations.lottie) {
+      integrations.add(LottieIntegration());
     }
   }
 
