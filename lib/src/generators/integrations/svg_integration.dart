@@ -6,6 +6,7 @@ class SvgIntegration extends Integration {
   List<String> get requiredImports => [
         'package:flutter_svg/flutter_svg.dart',
         'package:flutter/services.dart',
+        'package:flutter/foundation.dart'
       ];
 
   @override
@@ -14,7 +15,7 @@ class SvgIntegration extends Integration {
 
   final String _assetName;
 
-  SvgPicture svg({
+  Widget svg({
     Key key,
     bool matchTextDirection = false,
     AssetBundle bundle,
@@ -30,25 +31,57 @@ class SvgIntegration extends Integration {
     String semanticsLabel,
     bool excludeFromSemantics = false,
     Clip clipBehavior = Clip.hardEdge,
+    //
+    ImageFrameBuilder frameBuilderWeb,
+    ImageLoadingBuilder loadingBuilderWeb,
+    ImageErrorWidgetBuilder errorBuilderWeb,
+    ImageRepeat repeatWeb = ImageRepeat.noRepeat,
+    Rect centerSliceWeb,
+    bool gaplessPlaybackWeb = false,
+    bool isAntiAliasWeb = false,
+    FilterQuality filterQualityWeb = FilterQuality.low,
   }) {
-    return SvgPicture.asset(
-      _assetName,
-      key: key,
-      matchTextDirection: matchTextDirection,
-      bundle: bundle,
-      package: package,
-      width: width,
-      height: height,
-      fit: fit,
-      alignment: alignment,
-      allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
-      placeholderBuilder: placeholderBuilder,
-      color: color,
-      colorBlendMode: colorBlendMode,
-      semanticsLabel: semanticsLabel,
-      excludeFromSemantics: excludeFromSemantics,
-      clipBehavior: clipBehavior,
-    );
+     if (kIsWeb)
+      return Image.network(
+        _assetName,
+        key: key,
+        matchTextDirection: matchTextDirection,
+        width: width,
+        height: height,
+        fit: fit,
+        alignment: alignment,
+        color: color,
+        colorBlendMode: colorBlendMode,
+        semanticLabel: semanticsLabel,
+        excludeFromSemantics: excludeFromSemantics,
+        frameBuilder: frameBuilderWeb,
+        loadingBuilder: loadingBuilderWeb,
+        errorBuilder: errorBuilderWeb,
+        repeat: repeatWeb,
+        centerSlice: centerSliceWeb,
+        gaplessPlayback: gaplessPlaybackWeb,
+        isAntiAlias: isAntiAliasWeb,
+        filterQuality: filterQualityWeb,
+      );
+    else
+      return SvgPicture.asset(
+        _assetName,
+        key: key,
+        matchTextDirection: matchTextDirection,
+        bundle: bundle,
+        package: package,
+        width: width,
+        height: height,
+        fit: fit,
+        alignment: alignment,
+        allowDrawingOutsideViewBox: allowDrawingOutsideViewBox,
+        placeholderBuilder: placeholderBuilder,
+        color: color,
+        colorBlendMode: colorBlendMode,
+        semanticsLabel: semanticsLabel,
+        excludeFromSemantics: excludeFromSemantics,
+        clipBehavior: clipBehavior,
+      );
   }
 
   String get path => _assetName;
