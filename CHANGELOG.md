@@ -1,3 +1,33 @@
+## 2.0.0
+
+New Feature
+- [BREAKING CHANGE] [#49](https://github.com/FlutterGen/flutter_gen/issues/49) [#53](https://github.com/FlutterGen/flutter_gen/issues/53) Name collision with flutter localization when using build_runner
+  ```yaml
+  # Before
+  # dev_dependencies:
+  #  flutter_gen: 1.3.1
+  
+  # After
+  dev_dependencies:
+    flutter_gen_runner: ^2.0.0
+  ```
+- [#74](https://github.com/FlutterGen/flutter_gen/issues/74) Doesn't generate assets.gen.dart when there are no assets
+  ```yaml
+  flutter_gen:
+    fonts:
+      enabled: false
+  ```
+- [#59](https://github.com/FlutterGen/flutter_gen/issues/59) Handling duplicate file names
+  ```dart
+  // generated codes
+  static const AssetGenImage imagesProfileJpg = AssetGenImage('assets/images/profile.jpg'); 
+  static const AssetGenImage imagesProfilePng = AssetGenImage('assets/images/profile.png');
+  ```
+
+
+Bug fix
+- [#75](https://github.com/FlutterGen/flutter_gen/issues/75) Null safety support for generated files 
+
 ## 1.3.1
 
 Bug fix

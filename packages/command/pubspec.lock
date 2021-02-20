@@ -16,7 +16,7 @@ packages:
     source: hosted
     version: "0.41.2"
   args:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: args
       url: "https://pub.dartlang.org"
@@ -112,7 +112,7 @@ packages:
       name: flutter_gen_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0-dev.1"
+    version: "2.0.0"
   glob:
     dependency: transitive
     description:

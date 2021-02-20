@@ -168,7 +168,7 @@ packages:
       name: flutter_gen_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0-dev.1"
+    version: "2.0.0"
   glob:
     dependency: transitive
     description:

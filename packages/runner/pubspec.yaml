@@ -1,7 +1,7 @@
 name: flutter_gen_runner
 
 description: The Flutter code generator for your assets, fonts, colors, … — Get rid of all String-based APIs.
-version: 2.0.0-dev.1
+version: 2.0.0
 homepage: https://github.com/FlutterGen/flutter_gen
 repository: https://github.com/FlutterGen/flutter_gen
 documentation: https://github.com/FlutterGen/flutter_gen
@@ -14,7 +14,7 @@ environment:
   sdk: '>=2.12.0-0 <3.0.0'
 
 dependencies:
-  flutter_gen_core: ^2.0.0-dev.1
+  flutter_gen_core: ^2.0.0
   build: ^1.6.2
 
 dev_dependencies:

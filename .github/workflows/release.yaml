@@ -37,6 +37,7 @@ jobs:
         if: matrix.os == 'macos-latest'
         run: |
           cd packages/command/
+          dart pub get
           mkdir -p bin/${{ matrix.target }}
           dart2native bin/flutter_gen_command.dart -o bin/${{ matrix.target }}/fluttergen
 
@@ -44,6 +45,7 @@ jobs:
         if: matrix.os == 'ubuntu-latest'
         run: |
           cd packages/command/
+          /usr/lib/dart/bin/pub get
           mkdir -p bin/${{ matrix.target }}
           /usr/lib/dart/bin/dart2native bin/flutter_gen_command.dart -o bin/${{ matrix.target }}/fluttergen
 
@@ -58,9 +60,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            cd packages/command/
-            bin/${{ matrix.target }}/fluttergen-${{ matrix.artifact_prefix }}.tar.gz
-            bin/${{ matrix.target }}/fluttergen-${{ matrix.artifact_prefix }}.sha256
+            packages/command/bin/${{ matrix.target }}/fluttergen-${{ matrix.artifact_prefix }}.tar.gz
+            packages/command/bin/${{ matrix.target }}/fluttergen-${{ matrix.artifact_prefix }}.sha256
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -19,6 +19,9 @@ jobs:
         with:
           channel: 'stable'
 
+      - name: Set environment
+        run: echo "$HOME/.pub-cache/bin" >> $GITHUB_PATH
+
       - name: Get dart dependencies.
         run: make dependencies
 

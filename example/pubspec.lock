@@ -222,14 +222,14 @@ packages:
       name: flutter_gen_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.0.0-dev.1"
+    version: "2.0.0"
   flutter_gen_runner:
     dependency: "direct dev"
     description:
       path: "../packages/runner"
       relative: true
     source: path
-    version: "2.0.0-dev.1"
+    version: "2.0.0"
   flutter_svg:
     dependency: "direct main"
     description:

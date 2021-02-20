@@ -35,7 +35,7 @@ unit-test:
 	cd packages/core/ && dart pub run test && cd ..
 
 coverage:
-	cd packages/core/ && dart pub run test_coverage --no-badge && cd ..
+	./scripts/coverage.sh packages/core
 	./scripts/codecov.sh ${CODECOV_TOKEN}
 
 setup-ubuntu:
@@ -45,9 +45,7 @@ setup-ubuntu:
 	sudo sh -c 'wget -qO- https://storage.googleapis.com/download.dartlang.org/linux/debian/dart_stable.list > /etc/apt/sources.list.d/dart_stable.list'
 	sudo apt-get update
 	sudo apt-get install dart
-	/usr/lib/dart/bin/pub get
 
 setup-macos:
 	brew tap dart-lang/dart
 	brew install dart
-	dart pub get
