@@ -1,1 +1,2 @@
-T safeCast<T>(dynamic value) => value is T ? value : null;
+
+T? safeCast<T>(dynamic value) => value is T ? value : null;

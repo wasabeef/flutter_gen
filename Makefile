@@ -32,7 +32,7 @@ generate-with-runner:
 	cd example && flutter packages pub run build_runner build --delete-conflicting-outputs && cd ..
 
 unit-test:
-	cd packages/core/ && dart pub run test && cd ..
+	cd packages/core/ && dart pub run --no-sound-null-safety test && cd ..
 
 coverage:
 	./scripts/coverage.sh packages/core

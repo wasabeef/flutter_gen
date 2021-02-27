@@ -1,3 +1,4 @@
+
 import 'package:dartx/dartx.dart';
 import 'package:mime/mime.dart';
 import 'package:path/path.dart' as p;
@@ -12,7 +13,7 @@ class AssetType {
 
   bool get isDefaultAssetsDirectory => path == 'assets' || path == 'asset';
 
-  String get mime => lookupMimeType(path);
+  String? get mime => lookupMimeType(path);
 
   /// https://api.flutter.dev/flutter/widgets/Image-class.html
   bool get isSupportedImage {
@@ -63,8 +64,8 @@ class AssetTypeIsUniqueWithoutExtension {
     this.isUniqueWithoutExtension,
   });
 
-  final AssetType assetType;
-  final bool isUniqueWithoutExtension;
+  final AssetType? assetType;
+  final bool? isUniqueWithoutExtension;
 }
 
 extension AssetTypeIterable on Iterable<AssetType> {

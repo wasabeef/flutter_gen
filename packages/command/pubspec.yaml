@@ -18,7 +18,8 @@ executables:
 
 dependencies:
   args: ^1.6.0
-  flutter_gen_core: ^2.0.0
+  flutter_gen_core:
+    path: ../core
 
 dev_dependencies:
   effective_dart: ^1.3.0

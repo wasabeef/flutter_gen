@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
@@ -17,7 +18,7 @@ String generateColors(
   DartFormatter formatter,
   FlutterGenColors colors,
 ) {
-  if (colors.inputs.isEmpty) {
+  if (colors.inputs!.isEmpty) {
     throw InvalidSettingsException(
         'The value of "flutter_gen/colors:" is incorrect.');
   }
@@ -32,7 +33,7 @@ String generateColors(
   buffer.writeln();
 
   final colorList = <_Color>[];
-  colors.inputs
+  colors.inputs!
       .map((file) => ColorPath(join(pubspecFile.parent.path, file)))
       .forEach((colorFile) {
     final data = colorFile.file.readAsStringSync();
@@ -48,7 +49,7 @@ String generateColors(
 
   colorList
       .distinctBy((color) => color.name)
-      .sortedBy((color) => color.name)
+      .sortedBy(((color) => color.name!) as Comparable<dynamic> Function(_Color))
       .map(_colorStatement)
       .forEach(buffer.write);
 
@@ -61,7 +62,7 @@ String _colorStatement(_Color color) {
   if (color.isMaterial) {
     final swatch = swatchFromPrimaryHex(color.hex);
     final statement = '''
-  static const MaterialColor ${color.name.camelCase()} = MaterialColor(
+  static const MaterialColor ${color.name!.camelCase()} = MaterialColor(
     ${swatch[500]},
     <int, Color>{
       ${swatch.entries.map((e) => '${e.key}: Color(${e.value}),').join('\n')}
@@ -72,7 +73,7 @@ String _colorStatement(_Color color) {
   if (color.isMaterialAccent) {
     final accentSwatch = accentSwatchFromPrimaryHex(color.hex);
     final statement = '''
-  static const MaterialAccentColor ${color.name.camelCase()}Accent = MaterialAccentColor(
+  static const MaterialAccentColor ${color.name!.camelCase()}Accent = MaterialAccentColor(
    ${accentSwatch[200]},
    <int, Color>{
      ${accentSwatch.entries.map((e) => '${e.key}: Color(${e.value}),').join('\n')}
@@ -82,7 +83,7 @@ String _colorStatement(_Color color) {
   }
   if (color.isNormal) {
     final statement =
-        '''static const Color ${color.name.camelCase()} = Color(${colorFromHex(color.hex)});''';
+        '''static const Color ${color.name!.camelCase()} = Color(${colorFromHex(color.hex)});''';
     buffer.writeln(statement);
   }
   return buffer.toString();
@@ -102,7 +103,7 @@ class _Color {
           element.getAttribute('type')?.split(' ') ?? List.empty(),
         );
 
-  final String name;
+  final String? name;
 
   final String hex;
 

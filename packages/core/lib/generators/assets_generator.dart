@@ -1,6 +1,8 @@
+
 import 'dart:collection';
 import 'dart:io';
 
+import 'package:collection/collection.dart' show IterableExtension;
 import 'package:dart_style/dart_style.dart';
 import 'package:dartx/dartx.dart';
 import 'package:path/path.dart';
@@ -29,17 +31,17 @@ String generateAssets(
   final classesBuffer = StringBuffer();
 
   final integrations = <Integration>[
-    if (flutterGen.integrations.flutterSvg) SvgIntegration(),
-    if (flutterGen.integrations.flareFlutter) FlareIntegration(),
+    if (flutterGen.integrations!.flutterSvg!) SvgIntegration(),
+    if (flutterGen.integrations!.flareFlutter!) FlareIntegration(),
   ];
 
-  if (flutterGen.assets.isDotDelimiterStyle) {
+  if (flutterGen.assets!.isDotDelimiterStyle) {
     classesBuffer.writeln(
         _dotDelimiterStyleDefinition(pubspecFile, assets, integrations));
-  } else if (flutterGen.assets.isSnakeCaseStyle) {
+  } else if (flutterGen.assets!.isSnakeCaseStyle) {
     classesBuffer
         .writeln(_snakeCaseStyleDefinition(pubspecFile, assets, integrations));
-  } else if (flutterGen.assets.isCamelCaseStyle) {
+  } else if (flutterGen.assets!.isCamelCaseStyle) {
     classesBuffer
         .writeln(_camelCaseStyleDefinition(pubspecFile, assets, integrations));
   } else {
@@ -87,7 +89,7 @@ List<String> _getAssetRelativePathList(
   return assetRelativePathList;
 }
 
-AssetType _constructAssetTree(List<String> assetRelativePathList) {
+AssetType? _constructAssetTree(List<String> assetRelativePathList) {
   // Relative path is the key
   final assetTypeMap = <String, AssetType>{
     '.': AssetType('.'),
@@ -105,19 +107,19 @@ AssetType _constructAssetTree(List<String> assetRelativePathList) {
       continue;
     }
     final parentPath = dirname(assetType.path);
-    assetTypeMap[parentPath].addChild(assetType);
+    assetTypeMap[parentPath]!.addChild(assetType);
   }
   return assetTypeMap['.'];
 }
 
-_Statement _createAssetTypeStatement(
+_Statement? _createAssetTypeStatement(
   File pubspecFile,
   AssetType assetType,
   List<Integration> integrations,
   String name,
 ) {
   final childAssetAbsolutePath = join(pubspecFile.parent.path, assetType.path);
-  _Statement statement;
+  _Statement? statement;
   if (assetType.isSupportedImage) {
     statement = _Statement(
       type: 'AssetGenImage',
@@ -134,9 +136,8 @@ _Statement _createAssetTypeStatement(
       isConstConstructor: true,
     );
   } else if (!assetType.isIgnoreFile) {
-    final integration = integrations.firstWhere(
+    final integration = integrations.firstWhereOrNull(
       (element) => element.isSupport(assetType),
-      orElse: () => null,
     );
     if (integration == null) {
       statement = _Statement(
@@ -169,7 +170,7 @@ String _dotDelimiterStyleDefinition(
   final assetsStaticStatements = <_Statement>[];
 
   final assetTypeQueue = ListQueue<AssetType>.from(
-      _constructAssetTree(assetRelativePathList).children);
+      _constructAssetTree(assetRelativePathList)!.children);
 
   while (assetTypeQueue.isNotEmpty) {
     final assetType = assetTypeQueue.removeFirst();
@@ -181,11 +182,11 @@ String _dotDelimiterStyleDefinition(
           .map(
             (e) => _createAssetTypeStatement(
               pubspecFile,
-              e.assetType,
+              e.assetType!,
               integrations,
-              (e.isUniqueWithoutExtension
-                      ? basenameWithoutExtension(e.assetType.path)
-                      : basename(e.assetType.path))
+              (e.isUniqueWithoutExtension!
+                      ? basenameWithoutExtension(e.assetType!.path)
+                      : basename(e.assetType!.path))
                   .camelCase(),
             ),
           )
@@ -226,9 +227,9 @@ String _camelCaseStyleDefinition(
     pubspecFile,
     assets,
     integrations,
-    (e) => (e.isUniqueWithoutExtension
-            ? withoutExtension(e.assetType.path)
-            : e.assetType.path)
+    (e) => (e.isUniqueWithoutExtension!
+            ? withoutExtension(e.assetType!.path)
+            : e.assetType!.path)
         .replaceFirst(RegExp(r'asset(s)?'), '')
         .camelCase(),
   );
@@ -244,9 +245,9 @@ String _snakeCaseStyleDefinition(
     pubspecFile,
     assets,
     integrations,
-    (e) => (e.isUniqueWithoutExtension
-            ? withoutExtension(e.assetType.path)
-            : e.assetType.path)
+    (e) => (e.isUniqueWithoutExtension!
+            ? withoutExtension(e.assetType!.path)
+            : e.assetType!.path)
         .replaceFirst(RegExp(r'asset(s)?'), '')
         .snakeCase(),
   );
@@ -266,7 +267,7 @@ String _flatStyleDefinition(
       .map(
         (e) => _createAssetTypeStatement(
           pubspecFile,
-          e.assetType,
+          e.assetType!,
           integrations,
           createName(e),
         ),
@@ -368,13 +369,13 @@ class _Statement {
     this.isConstConstructor,
   });
 
-  final String type;
-  final String name;
-  final String value;
-  final bool isConstConstructor;
+  final String? type;
+  final String? name;
+  final String? value;
+  final bool? isConstConstructor;
 
   String toGetterString() =>
-      '$type get $name => ${isConstConstructor ? 'const' : ''} $value;';
+      '$type get $name => ${isConstConstructor! ? 'const' : ''} $value;';
 
   String toStaticFieldString() => 'static const $type $name = $value;';
 }

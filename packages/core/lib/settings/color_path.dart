@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:mime/mime.dart';
@@ -10,7 +11,7 @@ class ColorPath {
 
   File get file => File(path);
 
-  String get mime => lookupMimeType(path);
+  String? get mime => lookupMimeType(path);
 
   /// https://api.flutter.dev/flutter/widgets/Image-class.html
   bool get isXml => mime == 'application/xml';

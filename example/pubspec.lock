@@ -219,9 +219,9 @@ packages:
   flutter_gen_core:
     dependency: transitive
     description:
-      name: flutter_gen_core
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "../packages/core"
+      relative: true
+    source: path
     version: "2.0.0"
   flutter_gen_runner:
     dependency: "direct dev"
@@ -236,7 +236,7 @@ packages:
       name: flutter_svg
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.18.1"
+    version: "0.20.0-nullsafety.3"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -269,7 +269,7 @@ packages:
       name: http_parser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.0"
+    version: "3.1.4"
   io:
     dependency: transitive
     description:
@@ -325,7 +325,7 @@ packages:
       name: mime
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.9.7"
+    version: "1.0.0"
   package_config:
     dependency: transitive
     description:
@@ -346,14 +346,14 @@ packages:
       name: path_drawing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.1+1"
+    version: "0.5.0-nullsafety.0"
   path_parsing:
     dependency: transitive
     description:
       name: path_parsing
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.4"
+    version: "0.2.0-nullsafety.0"
   pedantic:
     dependency: transitive
     description:
@@ -367,7 +367,7 @@ packages:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.1.0"
+    version: "4.0.2"
   pool:
     dependency: transitive
     description:
@@ -395,7 +395,7 @@ packages:
       name: shelf
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "0.7.9"
   shelf_web_socket:
     dependency: transitive
     description:
@@ -505,14 +505,14 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.5.1"
+    version: "5.0.2"
   yaml:
     dependency: transitive
     description:
       name: yaml
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.2.1"
+    version: "3.1.0"
 sdks:
-  dart: ">=2.12.0-0.0 <3.0.0"
+  dart: ">=2.12.0-259.12.beta <3.0.0"
   flutter: ">=1.24.0"

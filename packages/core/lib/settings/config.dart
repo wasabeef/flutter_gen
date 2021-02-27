@@ -1,3 +1,4 @@
+
 import 'dart:io';
 
 import 'package:merge_map/merge_map.dart';
@@ -9,11 +10,11 @@ import 'pubspec.dart';
 class Config {
   Config._({this.pubspec});
 
-  final Pubspec pubspec;
+  final Pubspec? pubspec;
 
-  FlutterGen get flutterGen => pubspec.flutterGen;
+  FlutterGen? get flutterGen => pubspec!.flutterGen;
 
-  Flutter get flutter => pubspec.flutter;
+  Flutter? get flutter => pubspec!.flutter;
 }
 
 Future<Config> loadPubspecConfig(File pubspecFile) async {
@@ -26,9 +27,9 @@ Future<Config> loadPubspecConfig(File pubspecFile) async {
     throw FileSystemException(
         'Cannot open pubspec.yaml: ${pubspecFile.absolute}');
   });
-  final userMap = loadYaml(content) as Map;
-  final defaultMap = loadYaml(_defaultConfig) as Map;
-  final mergedMap = mergeMap([defaultMap, userMap]);
+  final userMap = loadYaml(content) as Map?;
+  final defaultMap = loadYaml(_defaultConfig) as Map?;
+  final mergedMap = mergeMap([defaultMap!, userMap!]);
   final pubspec = Pubspec.fromJson(mergedMap);
   return Config._(pubspec: pubspec);
 }
