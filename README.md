@@ -96,6 +96,31 @@ $ flutter pub get
 $ flutter packages pub run build_runner build
 ```
 
+### Pub Dev Dependency
+
+<details><summary>Installation</summary>
+
+1. Add FlutterGen to your package's pubspec.yaml file:
+
+```
+dev_dependencies:
+  flutter_gen:
+```
+
+2. Install FlutterGen
+
+```
+$ flutter pub get
+```
+
+3. Use FlutterGen
+
+```
+$ flutter pub run flutter_gen:flutter_gen_command
+```
+
+</details>
+
 ## Usage
 
 Run `fluttergen` after the configuration [`pubspec.yaml`](https://dart.dev/tools/pub/pubspec).
